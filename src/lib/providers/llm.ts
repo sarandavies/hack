@@ -2,7 +2,7 @@
 // Structured outputs are schema-validated with Zod; one repair attempt is permitted.
 // Untrusted source records are always delimited in the user turn, never the system prompt.
 
-import { getEnv } from '@/config/env';
+import { getEnv } from '../../config/env';
 import type { LLMProvider, StructuredCallOptions } from './types';
 
 const EFFORT_TOKENS = { low: 2_000, medium: 6_000, high: 12_000 } as const;

@@ -1,4 +1,4 @@
-import type { RunView, TargetView } from '@/lib/types';
+import type { RunView, TargetView } from '../types';
 
 /** Escape a CSV cell: quote-double, wrap, and neutralise spreadsheet formula injection. */
 export function csvCell(value: string | number | boolean | undefined | null): string {

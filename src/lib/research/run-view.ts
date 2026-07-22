@@ -12,13 +12,13 @@ import type {
   Source,
   TargetView,
   WatchlistView,
-} from '@/lib/types';
-import { BUDGETS } from '@/config/budgets';
-import { getEnv } from '@/config/env';
-import { SCORING_VERSION } from '@/config/scoring';
-import { evaluateGates, scoreAccount } from '@/lib/scoring/score';
-import { toSignalView } from '@/lib/scoring/signal-tiers';
-import { claimCanQualify, verifiedEvidenceCount } from '@/lib/verification/verify';
+} from '../types';
+import { BUDGETS } from '../../config/budgets';
+import { getEnv } from '../../config/env';
+import { SCORING_VERSION } from '../../config/scoring';
+import { evaluateGates, scoreAccount } from '../scoring/score';
+import { toSignalView } from '../scoring/signal-tiers';
+import { claimCanQualify, verifiedEvidenceCount } from '../verification/verify';
 import {
   demoCandidates,
   demoClaims,
@@ -30,7 +30,7 @@ import {
   demoSources,
   demoTotals,
   demoUniverse,
-} from '@/data/demo/tramline';
+} from '../../data/demo/tramline';
 import type { RunRecord } from './store';
 
 export const RUN_STAGES: { key: string; label: string; durationSeconds: number }[] = [

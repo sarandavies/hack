@@ -1,5 +1,5 @@
-import type { Claim, Source } from '@/lib/types';
-import { CURRENT_STATUS_MAX_AGE_DAYS, MAX_EXCERPT_CHARS } from '@/config/scoring';
+import type { Claim, Source } from '../types';
+import { CURRENT_STATUS_MAX_AGE_DAYS, MAX_EXCERPT_CHARS } from '../../config/scoring';
 
 export function normaliseWhitespace(s: string): string {
   return s.replace(/\s+/g, ' ').trim();

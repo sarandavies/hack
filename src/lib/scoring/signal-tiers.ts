@@ -1,5 +1,5 @@
-import type { PainSignal, SignalView } from '@/lib/types';
-import { CORROBORATION_MAX, SIGNAL_MAX, TIER_BASE_POINTS } from '@/config/scoring';
+import type { PainSignal, SignalView } from '../types';
+import { CORROBORATION_MAX, SIGNAL_MAX, TIER_BASE_POINTS } from '../../config/scoring';
 
 /** Tier-0 items and unverified signals can never contribute to qualification or score. */
 export function qualifiesForScoring(signal: PainSignal): boolean {

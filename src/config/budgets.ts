@@ -1,4 +1,4 @@
-import type { ResearchMode } from '@/lib/types';
+import type { ResearchMode } from '../lib/types';
 
 export interface ModeBudget {
   firstPreliminarySeconds: number;

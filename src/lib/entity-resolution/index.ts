@@ -1,4 +1,4 @@
-import type { EmploymentStatus } from '@/lib/types';
+import type { EmploymentStatus } from '../types';
 
 const TRACKING_PARAMS = /^(utm_|gclid|fbclid|mc_cid|mc_eid|ref|igshid)/;
 const CORPORATE_SUFFIXES = new Set([

@@ -6,7 +6,7 @@ import type {
   StartupProfile,
   TargetView,
   WatchlistView,
-} from '@/lib/types';
+} from '../src/lib/types';
 
 export function esc(v: unknown): string {
   return String(v ?? '')

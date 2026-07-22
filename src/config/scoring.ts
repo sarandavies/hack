@@ -1,5 +1,5 @@
 // Every scoring constant lives in this module so the rubric is configurable in one place.
-import type { SignalTier } from '@/lib/types';
+import type { SignalTier } from '../lib/types';
 
 export const SCORING_VERSION = 'vector-scoring-v1';
 

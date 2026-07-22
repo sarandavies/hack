@@ -1,6 +1,6 @@
 // Live evaluation harness. Runs only with real credentials; never claims results
 // that were not measured, and never substitutes synthetic data for live evidence.
-import { getEnv, liveResearchAvailable } from '@/config/env';
+import { getEnv, liveResearchAvailable } from '../../config/env';
 
 interface EvalMetrics {
   url: string;

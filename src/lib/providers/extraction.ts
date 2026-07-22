@@ -1,4 +1,4 @@
-import { safeFetch } from '@/lib/security/ssrf';
+import { safeFetch } from '../security/ssrf';
 import type { ExtractedPage, PageExtractionProvider } from './types';
 
 /** Strip tags/scripts for a readable text body. Retrieved content is hostile data. */

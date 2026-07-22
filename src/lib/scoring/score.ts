@@ -4,7 +4,7 @@ import type {
   GateResult,
   PainSignal,
   ScoreBreakdown,
-} from '@/lib/types';
+} from '../types';
 import {
   ALTERNATIVE_POINTS,
   BUYER_POINTS,
@@ -17,7 +17,7 @@ import {
   ROUTE_POINTS,
   SCORING_VERSION,
   STRATEGIC_POINTS,
-} from '@/config/scoring';
+} from '../../config/scoring';
 import { accountSignalScore, independentStrongSignals } from './signal-tiers';
 
 /**

@@ -4,12 +4,12 @@
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
-import { getEnv, liveResearchAvailable } from '@/config/env';
-import { canonicalDomain } from '@/lib/entity-resolution';
-import { addFeedback, createRun, getRun } from '@/lib/research/store';
-import { buildRunView } from '@/lib/research/run-view';
-import { demoProfile, DEMO_URL } from '@/data/demo/tramline';
-import type { FeedbackType, ResearchMode, StartupProfile } from '@/lib/types';
+import { getEnv, liveResearchAvailable } from '../src/config/env';
+import { canonicalDomain } from '../src/lib/entity-resolution';
+import { addFeedback, createRun, getRun } from '../src/lib/research/store';
+import { buildRunView } from '../src/lib/research/run-view';
+import { demoProfile, DEMO_URL } from '../src/data/demo/tramline';
+import type { FeedbackType, ResearchMode, StartupProfile } from '../src/lib/types';
 import {
   buildBriefMarkdown,
   buildCompetitorsCsv,
@@ -18,7 +18,7 @@ import {
   buildTargetsCsv,
   buildUniverseCsv,
   sanitiseFilename,
-} from '@/lib/exports/csv';
+} from '../src/lib/exports/csv';
 import { analysePage, landingPage, methodologyPage, runPage } from './render';
 
 const PORT = Number(process.env.PORT ?? 3000);
