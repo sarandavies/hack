@@ -5,8 +5,12 @@
   "buildCommand": "npm run build",
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/api/index?__path=/"
+    },
+    {
       "source": "/:path*",
-      "destination": "/api/index"
+      "destination": "/api/index?__path=/:path*"
     }
   ],
   "functions": {

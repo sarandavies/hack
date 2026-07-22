@@ -86,7 +86,16 @@ const STATIC_FILES: Record<string, { file: string; type: string }> = {
 export async function handleRequest(request: Request): Promise<Response> {
   try {
     const url = new URL(request.url);
-    const p = url.pathname;
+    const forwardedPath = url.searchParams.get('__path');
+    const p = forwardedPath
+      ? forwardedPath.startsWith('/')
+        ? forwardedPath
+        : `/${forwardedPath}`
+      : url.pathname === '/api/index'
+        ? '/'
+        : url.pathname;
+
+    url.searchParams.delete('__path');
     const method = request.method;
 
     const staticFile = STATIC_FILES[p];
