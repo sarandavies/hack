@@ -18,29 +18,21 @@ role, quotation, customer relationship or source. Quality targets (80%+ citation
 zero fabrications, <25% qualified-target false positives) are evaluation objectives measured by
 the eval harness — not claims displayed before measurement.
 
-## Important build note (read first)
+## Deployment note
 
-This repository was produced inside a sandbox whose **network egress blocks all package
-registries** (npm, mirrors, pypi — verified at build time: `registry.npmjs.org` → 403
-"Host not in allowlist"). Installing Next.js, Tailwind, Drizzle, Zod, Vitest or Playwright
-was therefore impossible. Rather than ship an app that cannot run, Vector ships as a
-**zero-external-dependency build** on the preinstalled toolchain:
+The original sandbox build relied on globally preinstalled TypeScript tooling and a persistent
+`node:http` process. This repository now declares its build dependencies and exposes the same
+request handler as a Vercel Function through `api/index.ts`. `vercel.json` routes the application
+to that function and includes the public CSS and JavaScript assets in the function bundle.
 
-- **Runtime/UI**: Node 22 `node:http` server with server-rendered HTML + a small vanilla JS
-  polling client (`server/`, `public/`). Same routes, same polling model, same UX flow the
-  spec describes.
-- **Language**: strict TypeScript (tsc 6, `--noEmit` typecheck), executed via `tsx`.
-- **Tests**: `node:test` (107 unit + integration assertions) plus an HTTP end-to-end happy path.
-- **Validation**: hand-rolled env/request validation (`src/config/env.ts`, `server/main.ts`)
-  standing in for Zod; provider interfaces accept any zod-compatible `{ parse }` schema.
-
-The intelligence engine (`src/lib`, `src/config`, `src/data`) is framework-agnostic and ports
-directly into the intended Next.js + Postgres + Drizzle + Vercel Workflow stack once registry
-access exists. See *Known limitations*.
+The current deployment is a **synthetic-demo deployment**. Live research orchestration and
+durable production persistence are still not wired end to end. Demo run URLs can be reconstructed
+across serverless cold starts; feedback persistence remains best-effort until a database is added.
 
 ## Quick start
 
 ```bash
+npm install
 npm run dev          # http://localhost:3000  — no credentials needed
 npm run verify       # typecheck + unit/integration tests + e2e happy path
 ```
@@ -79,7 +71,9 @@ src/lib/providers/             SearchProvider (Exa/Brave), extraction (safe fetc
 src/lib/research/              Run store (persisted, refresh-safe) + deterministic run-view builder
 src/lib/exports/               CSV (formula-injection safe), JSON report, Markdown brief
 src/data/demo/tramline.ts      Self-verifying synthetic fixture (tests enforce evidence rules on it)
-server/                        HTTP server + server-rendered UI
+server/                        Shared Web request handler + local Node adapter
+api/index.ts                   Vercel Function entrypoint
+vercel.json                    Vercel install, build, routing and asset configuration
 tests/                         unit, integration, e2e
 ```
 
@@ -117,7 +111,7 @@ npm run verify      # all of the above
 - Intended stack (Next.js App Router, Tailwind, shadcn/ui, Drizzle, Vitest, Playwright) could
   not be installed; the engine is stack-portable by design.
 - Public-route research is conservative by design: an affinity is never an introduction.
-- Run ownership is per-server-process; signed access sessions ship with the database layer.
+- Feedback and edited-profile persistence are best-effort on serverless instances until the database layer is added.
 
 ## Public-data constraints
 

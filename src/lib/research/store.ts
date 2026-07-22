@@ -6,6 +6,7 @@ import { randomUUID } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { FeedbackItem, FeedbackType, ResearchMode, StartupProfile } from '@/lib/types';
+import { demoProfile, DEMO_URL } from '@/data/demo/tramline';
 
 export interface RunRecord {
   id: string;
@@ -24,7 +25,7 @@ interface StoreShape {
 const g = globalThis as unknown as { __vectorStore?: StoreShape };
 
 const PERSIST_PATH = path.join(process.cwd(), '.vector-runs.json');
-const persistEnabled = !process.env.VITEST;
+const persistEnabled = !process.env.VITEST && !process.env.VERCEL;
 
 function load(): StoreShape {
   if (g.__vectorStore) return g.__vectorStore;
@@ -51,6 +52,21 @@ function persist(store: StoreShape) {
   }
 }
 
+function reconstructDemoRun(id: string): RunRecord | undefined {
+  const match = /^demo-(fast|thorough)-([a-f0-9]+)-[a-f0-9]+$/.exec(id);
+  if (!match) return undefined;
+  const timestamp = Number.parseInt(match[2] ?? '', 16);
+  return {
+    id,
+    url: DEMO_URL,
+    mode: match[1] as ResearchMode,
+    demo: true,
+    createdAt: Number.isFinite(timestamp) ? new Date(timestamp).toISOString() : new Date().toISOString(),
+    profile: demoProfile,
+    feedback: [],
+  };
+}
+
 export function createRun(opts: {
   url: string;
   mode: ResearchMode;
@@ -60,7 +76,9 @@ export function createRun(opts: {
 }): RunRecord {
   const store = load();
   const run: RunRecord = {
-    id: randomUUID(),
+    id: opts.demo
+      ? `demo-${opts.mode}-${Date.now().toString(16)}-${randomUUID().slice(0, 8)}`
+      : randomUUID(),
     url: opts.url,
     mode: opts.mode,
     demo: opts.demo,
@@ -74,7 +92,7 @@ export function createRun(opts: {
 }
 
 export function getRun(id: string): RunRecord | undefined {
-  return load().runs.get(id);
+  return load().runs.get(id) ?? reconstructDemoRun(id);
 }
 
 export function addFeedback(
@@ -84,8 +102,9 @@ export function addFeedback(
   reason?: string,
 ): FeedbackItem | undefined {
   const store = load();
-  const run = store.runs.get(runId);
+  const run = store.runs.get(runId) ?? reconstructDemoRun(runId);
   if (!run) return undefined;
+  if (!store.runs.has(runId)) store.runs.set(runId, run);
   const item: FeedbackItem = {
     id: randomUUID(),
     candidateId,

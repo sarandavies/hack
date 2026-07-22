@@ -6,10 +6,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22 }
-      - run: npm install -g tsx typescript   # zero-dep build; registry available in CI
-      - run: mkdir -p node_modules && npm install --no-save @types/node
-      - run: npx tsc --noEmit
-      - run: npm test
-      - run: npm run test:e2e
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install --production=false
+      - run: npm run verify
       # Live evaluation is never run in CI.

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Vector — Find the account. Know why now. Public customer intelligence agent for B2B startups. Zero-dependency build: this sandbox has no package-registry egress, so the app runs on Node 22 + tsx + TypeScript from the preinstalled toolchain.",
+  "description": "Vector \u2014 public customer intelligence agent for B2B startups.",
   "scripts": {
     "dev": "node --import tsx --import ./scripts/register-alias.mjs server/main.ts",
     "start": "node --import tsx --import ./scripts/register-alias.mjs server/main.ts",
@@ -14,5 +14,13 @@
     "test:e2e": "node --import tsx --import ./scripts/register-alias.mjs tests/e2e/happy.ts",
     "eval:live": "node --import tsx --import ./scripts/register-alias.mjs src/lib/evaluation/run-eval.ts",
     "verify": "npm run typecheck && npm run test && npm run test:e2e"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.3",
+    "tsx": "4.19.4",
+    "typescript": "5.8.3"
   }
 }
