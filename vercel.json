@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/:path*",
-      "destination": "/api/index"
+      "destination": "/api"
     }
   ],
   "functions": {
