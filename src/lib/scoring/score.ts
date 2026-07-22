@@ -4,7 +4,7 @@ import type {
   GateResult,
   PainSignal,
   ScoreBreakdown,
-} from '../types';
+} from '../types.js';
 import {
   ALTERNATIVE_POINTS,
   BUYER_POINTS,
@@ -17,8 +17,8 @@ import {
   ROUTE_POINTS,
   SCORING_VERSION,
   STRATEGIC_POINTS,
-} from '../../config/scoring';
-import { accountSignalScore, independentStrongSignals } from './signal-tiers';
+} from '../../config/scoring.js';
+import { accountSignalScore, independentStrongSignals } from './signal-tiers.js';
 
 /**
  * Deterministic account scoring. The model classifies enumerated inputs; every

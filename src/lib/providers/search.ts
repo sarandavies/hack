@@ -1,5 +1,5 @@
-import { getEnv } from '../../config/env';
-import type { SearchProvider, SearchResult } from './types';
+import { getEnv } from '../../config/env.js';
+import type { SearchProvider, SearchResult } from './types.js';
 
 /** Deterministic demo search provider — used only in synthetic demo mode. */
 export class DemoSearchProvider implements SearchProvider {

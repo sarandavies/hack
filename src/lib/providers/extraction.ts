@@ -1,5 +1,5 @@
-import { safeFetch } from '../security/ssrf';
-import type { ExtractedPage, PageExtractionProvider } from './types';
+import { safeFetch } from '../security/ssrf.js';
+import type { ExtractedPage, PageExtractionProvider } from './types.js';
 
 /** Strip tags/scripts for a readable text body. Retrieved content is hostile data. */
 export function htmlToText(html: string): string {

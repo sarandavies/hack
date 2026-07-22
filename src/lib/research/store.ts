@@ -5,8 +5,8 @@
 import { randomUUID } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import type { FeedbackItem, FeedbackType, ResearchMode, StartupProfile } from '../types';
-import { demoProfile, DEMO_URL } from '../../data/demo/tramline';
+import type { FeedbackItem, FeedbackType, ResearchMode, StartupProfile } from '../types.js';
+import { demoProfile, DEMO_URL } from '../../data/demo/tramline.js';
 
 export interface RunRecord {
   id: string;

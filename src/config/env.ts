@@ -1,4 +1,4 @@
-import { DEFAULT_QUALIFICATION_THRESHOLD } from './scoring';
+import { DEFAULT_QUALIFICATION_THRESHOLD } from './scoring.js';
 
 export interface ServerEnv {
   DATABASE_URL: string;

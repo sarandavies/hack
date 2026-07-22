@@ -12,13 +12,13 @@ import type {
   Source,
   TargetView,
   WatchlistView,
-} from '../types';
-import { BUDGETS } from '../../config/budgets';
-import { getEnv } from '../../config/env';
-import { SCORING_VERSION } from '../../config/scoring';
-import { evaluateGates, scoreAccount } from '../scoring/score';
-import { toSignalView } from '../scoring/signal-tiers';
-import { claimCanQualify, verifiedEvidenceCount } from '../verification/verify';
+} from '../types.js';
+import { BUDGETS } from '../../config/budgets.js';
+import { getEnv } from '../../config/env.js';
+import { SCORING_VERSION } from '../../config/scoring.js';
+import { evaluateGates, scoreAccount } from '../scoring/score.js';
+import { toSignalView } from '../scoring/signal-tiers.js';
+import { claimCanQualify, verifiedEvidenceCount } from '../verification/verify.js';
 import {
   demoCandidates,
   demoClaims,
@@ -30,8 +30,8 @@ import {
   demoSources,
   demoTotals,
   demoUniverse,
-} from '../../data/demo/tramline';
-import type { RunRecord } from './store';
+} from '../../data/demo/tramline.js';
+import type { RunRecord } from './store.js';
 
 export const RUN_STAGES: { key: string; label: string; durationSeconds: number }[] = [
   { key: 'analyse', label: 'Understanding the startup', durationSeconds: 6 },

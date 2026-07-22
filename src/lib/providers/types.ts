@@ -1,7 +1,7 @@
 // Provider architecture: modular interfaces, no overbuild. Demo mode is fixture-driven;
 // live mode plugs Exa (search), safe fetch + readability (extraction) and Anthropic (LLM).
 
-import type { RunView } from '../types';
+import type { RunView } from '../types.js';
 
 /** Minimal schema contract (zod-compatible): parse validates or throws. */
 export interface SchemaLike<T> {

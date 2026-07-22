@@ -4,12 +4,12 @@
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
-import { getEnv, liveResearchAvailable } from '../src/config/env';
-import { canonicalDomain } from '../src/lib/entity-resolution';
-import { addFeedback, createRun, getRun } from '../src/lib/research/store';
-import { buildRunView } from '../src/lib/research/run-view';
-import { demoProfile, DEMO_URL } from '../src/data/demo/tramline';
-import type { FeedbackType, ResearchMode, StartupProfile } from '../src/lib/types';
+import { getEnv, liveResearchAvailable } from '../src/config/env.js';
+import { canonicalDomain } from '../src/lib/entity-resolution/index.js';
+import { addFeedback, createRun, getRun } from '../src/lib/research/store.js';
+import { buildRunView } from '../src/lib/research/run-view.js';
+import { demoProfile, DEMO_URL } from '../src/data/demo/tramline.js';
+import type { FeedbackType, ResearchMode, StartupProfile } from '../src/lib/types.js';
 import {
   buildBriefMarkdown,
   buildCompetitorsCsv,
@@ -18,8 +18,8 @@ import {
   buildTargetsCsv,
   buildUniverseCsv,
   sanitiseFilename,
-} from '../src/lib/exports/csv';
-import { analysePage, landingPage, methodologyPage, runPage } from './render';
+} from '../src/lib/exports/csv.js';
+import { analysePage, landingPage, methodologyPage, runPage } from './render.js';
 
 const PORT = Number(process.env.PORT ?? 3000);
 const MAX_BODY = 200_000;

@@ -15,7 +15,7 @@ import type {
   Source,
   StartupProfile,
   UniverseEntry,
-} from '../../lib/types';
+} from '../../lib/types.js';
 
 const RETRIEVED = '2026-07-20T09:14:00Z';
 
